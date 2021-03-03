@@ -60,12 +60,12 @@ describe('app routes', () => {
 
       const newTodo = {
         todo: `Dance like nobody is watching`,
-        completed: false,
       };
 
       const expectation = [
         {
           ...newTodo,
+          completed: false,
           id: 3,
           user_id: 2,
         }];
@@ -82,21 +82,16 @@ describe('app routes', () => {
 
     test('updates todo from auth user enpoint', async () => {
 
-      const updatedTodo = {
-        todo: `Dance like nobody is watching`,
-        completed: true,
-      };
-
       const expectation = [
         {
-          ...updatedTodo,
+          completed: true,
+          todo: `Dance like nobody is watching`,
           id: 3,
           user_id: 2,
         }];
 
       const data = await fakeRequest(app)
         .put('/api/todos/3')
-        .send(updatedTodo)
         .set('Authorization', token)
         .expect('Content-Type', /json/)
         .expect(200);
@@ -106,14 +101,10 @@ describe('app routes', () => {
 
     test('returns todo from auth user enpoint', async () => {
 
-      const onlyTodo = {
-        todo: `Dance like nobody is watching`,
-        completed: true,
-      };
-
       const expectation = [
         {
-          ...onlyTodo,
+          todo: `Dance like nobody is watching`,
+          completed: true,
           id: 3,
           user_id: 2,
         }];
@@ -129,14 +120,10 @@ describe('app routes', () => {
 
     test('deletes todo from auth user enpoint', async () => {
 
-      const deletedTodo = {
-        todo: `Dance like nobody is watching`,
-        completed: true,
-      };
-
       const expectation = [
         {
-          ...deletedTodo,
+          todo: `Dance like nobody is watching`,
+          completed: true,
           id: 3,
           user_id: 2,
         }];
